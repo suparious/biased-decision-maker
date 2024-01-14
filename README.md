@@ -70,3 +70,19 @@ Windows Defender flags the executable as a trojan. This is a false positive. You
 ### References
 
 - [https://plainenglish.io/blog/pyinstaller-exe-false-positive-trojan-virus-resolved-b33842bd3184](https://plainenglish.io/blog/pyinstaller-exe-false-positive-trojan-virus-resolved-b33842bd3184)
+
+## Notes
+
+Full build script:
+
+```bash
+pyinstaller --noconfirm --log-level=WARN \
+    --onefile --nowindow 
+    #--add-data="README.md:." \
+    #--add-data="images/supariuous_logo.png:img" \
+    #--add-binary="libfoo.so:lib" \
+    #--hidden-import=secret1 \
+    #--hidden-import=secret2 \
+    #--upx-dir=/usr/local/share/ \
+    #myscript.spec
+```

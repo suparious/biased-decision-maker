@@ -50,14 +50,13 @@ If you wish to package this application yourself, follow these steps:
    - Find the packaged executable in the `dist` directory.
    - This file can be distributed and run on compatible systems without needing to install Python or any dependencies.
 
-
 ## Windows build issues
 
 Windows Defender flags the executable as a trojan. This is a false positive. You can try using the --onedir flag instead of --onefile to remedy this. If this does not work, you can try adding the executable to the Windows Defender exclusion list. The best way to resolve this, however, is to build pyinstaller on a Windows machine.
 
 ### Building PyInstaller on Windows
 
-1. Delete and re-create a fresh python `venv` environment. 
+1. Delete and re-create a fresh python `venv` environment.
 2. Do not install any packages in this environment, repeat step 1 if you did.
 3. Delete **pycache**, **build**, **dist** folders and the **.spec** file from your project folder.
 4. Install a compiler, like the [C++ Compiler from Visual Studios](http://visualstudio.microsoft.com/vs/features/cplusplus/), Community Edition.

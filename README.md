@@ -4,9 +4,18 @@
 
 Biased Decision Maker is an application that helps users make decisions based on a list of options and user-defined biases.
 
+## Features
+
+- Add and remove options dynamically.
+- Set biases for each option using sliders.
+- Make a decision based on the set biases.
+- Save and load configuration settings.
+
 ## How to Use
 
 - Enter your options in the provided fields.
+- Add options using the 'Add Option' button.
+- Remove the last option using the 'Remove Last Option' button.
 - Adjust the slider to set the bias for each option.
 - Click 'Decide' to make a biased random decision.
 - Use the 'Save Configuration' button to save your options and biases.
@@ -21,13 +30,13 @@ Biased Decision Maker is an application that helps users make decisions based on
 - Download the executable for your operating system.
 - Run the executable file to start the application.
 
-## Packaging the Application
+## Building and Packaging the Application
 
 If you wish to package this application yourself, follow these steps:
 
-1. **Install PyInstaller:**
+1. **Install PyInstaller and PyQt5:**
    - Ensure you have Python installed on your system.
-   - Install PyInstaller using the command: `pip install pyinstaller`.
+   - Install PyInstaller using the command: `pip install pyinstaller PyQt5`.
 
 2. **Package the Application:**
    - Navigate to the directory containing the `biased-decision-maker.py` script in your terminal or command prompt.

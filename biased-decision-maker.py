@@ -1,9 +1,7 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QSlider, QPushButton, QFileDialog
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QSlider, QPushButton
 from PyQt5.QtCore import Qt, QSettings
 import sys
 import random
-import json
-import os
 
 class BiasedDecisionApp(QWidget):
     def __init__(self):
@@ -11,6 +9,7 @@ class BiasedDecisionApp(QWidget):
         self.option_fields = []
         self.bias_sliders = []
         self.initUI()
+        self.loadConfiguration()  # Auto-load configuration on startup
 
     def initUI(self):
         # Main layout
@@ -69,6 +68,10 @@ class BiasedDecisionApp(QWidget):
         self.decide_button = QPushButton("Decide", self)
         self.decide_button.clicked.connect(self.makeDecision)
         self.layout.addWidget(self.decide_button)
+        
+        # Label to display the decision
+        self.decision_label = QLabel("Decision will be shown here.", self)
+        self.layout.addWidget(self.decision_label)
 
         # Set the layout
         self.setLayout(self.layout)
@@ -101,8 +104,11 @@ class BiasedDecisionApp(QWidget):
     def makeDecision(self):
         options = [field.text() for field in self.option_fields if field.text()]
         biases = [slider.value() for slider in self.bias_sliders[:len(options)]]
-        decision = self.biased_choice(options, biases)
-        print(f"Decision: {decision}")  # You can show this in the UI as well
+        if options:
+            decision = self.biased_choice(options, biases)
+            self.decision_label.setText(f"Decision: {decision}")
+        else:
+            self.decision_label.setText("Please add options to decide.")
     
     def biased_choice(self, options, biases):
         total_bias = sum(biases)

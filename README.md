@@ -30,8 +30,8 @@ If you wish to package this application yourself, follow these steps:
    - Install PyInstaller using the command: `pip install pyinstaller`.
 
 2. **Package the Application:**
-   - Navigate to the directory containing the `biased_decision_maker.py` script in your terminal or command prompt.
-   - Run the command: `pyinstaller --onefile --windowed biased_decision_maker.py`.
+   - Navigate to the directory containing the `biased-decision-maker.py` script in your terminal or command prompt.
+   - Run the command: `pyinstaller --onefile --windowed biased-decision-maker.py`.
    - This will create a standalone executable in the `dist` folder.
 
    Note: The `--windowed` flag is used to prevent a terminal window from opening alongside the GUI application on Mac and Linux.

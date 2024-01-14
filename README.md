@@ -41,10 +41,33 @@ If you wish to package this application yourself, follow these steps:
 2. **Package the Application:**
    - Navigate to the directory containing the `biased-decision-maker.py` script in your terminal or command prompt.
    - Run the command: `pyinstaller --onefile --windowed biased-decision-maker.py`.
-   - This will create a standalone executable in the `dist` folder.
+   - Windows might flag this app as a trojan. To remedy this, you can try using the --onedir flag instead of --onefile.
+   - This will create a standalone executable (or package folder) in the `dist` folder.
 
    Note: The `--windowed` flag is used to prevent a terminal window from opening alongside the GUI application on Mac and Linux.
 
 3. **Executable File:**
    - Find the packaged executable in the `dist` directory.
    - This file can be distributed and run on compatible systems without needing to install Python or any dependencies.
+
+
+## Windows build issues
+
+Windows Defender flags the executable as a trojan. This is a false positive. You can try using the --onedir flag instead of --onefile to remedy this. If this does not work, you can try adding the executable to the Windows Defender exclusion list. The best way to resolve this, however, is to build pyinstaller on a Windows machine.
+
+### Building PyInstaller on Windows
+
+1. Delete and re-create a fresh python `venv` environment. 
+2. Do not install any packages in this environment, repeat step 1 if you did.
+3. Delete **pycache**, **build**, **dist** folders and the **.spec** file from your project folder.
+4. Install a compiler, like the [C++ Compiler from Visual Studios](http://visualstudio.microsoft.com/vs/features/cplusplus/), Community Edition.
+5. Download and extract the latest release of Pyinstaller from [Pyinstaller's GitHub Repository](http://github.com/pyinstaller/pyinstaller/releases).
+6. Using a terminal, navigate to where you have extracted the pyinstaller source code and `cd` to the ***bootloader** folder.
+7. Compile the bootloader with `python.exe ./waf all --target-arch=64bit`. If you want 32bit, use `python.exe ./waf all --target-arch=32bit`.
+8. Using an administrator terminal, install the compiled pyinstaller with `python.exe setup.py install`. You may need `wheel` installed for this to work.
+9. Navigate to your project folder and run `pyinstaller --onefile --windowed biased-decision-maker.py`.
+10. Re-upload to VirusTotal and see if the false positive is gone.
+
+### References
+
+- [https://plainenglish.io/blog/pyinstaller-exe-false-positive-trojan-virus-resolved-b33842bd3184](https://plainenglish.io/blog/pyinstaller-exe-false-positive-trojan-virus-resolved-b33842bd3184)

@@ -2,7 +2,7 @@
 
 block_cipher = None
 
-a = Analysis(['biased-decision-maker.py'],
+a = Analysis(['biased_decision_maker.py'],
              pathex=[],
              binaries=[],
              datas=[],

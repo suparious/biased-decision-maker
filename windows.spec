@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['biased-decision-maker.py'],
+    ['biased_decision_maker.py'],
     pathex=[],
     binaries=[],
     datas=[],

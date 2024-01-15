@@ -27,7 +27,7 @@ Biased Decision Maker is an application that helps users make decisions based on
 
 ## Running the Application
 
-- Download the executable for your operating system.
+- Download the executable for your operating system, from the [releases page](https://github.com/suparious/biased-decision-maker/releases).
 - Run the executable file to start the application.
 
 ## Building and Packaging the Application
@@ -76,8 +76,9 @@ Windows Defender flags the executable as a trojan. This is a false positive. You
 Full build script:
 
 ```bash
+PLATFORM="windows"
 pyinstaller --noconfirm --log-level=WARN \
-    --onefile --nowindow 
+    --onefile --nowindow $PLATFORM.spec
     #--add-data="README.md:." \
     #--add-data="images/supariuous_logo.png:img" \
     #--add-binary="libfoo.so:lib" \

@@ -1,3 +1,11 @@
+"""
+This module implements the Biased Decision Maker application.
+
+The Biased Decision Maker is a GUI application built with PyQt5. It allows users to input a list of options and assign biases to these options. The application can then make a random decision weighted by these biases. Users can also save their list of options and biases to a file and load them later.
+
+The application is packaged using PyInstaller for distribution across different operating systems.
+"""
+
 from PyQt5.QtWidgets import (
   QApplication,
   QWidget,
@@ -24,12 +32,12 @@ class BiasedDecisionApp(QWidget):
         # Main layout
         self.layout = QVBoxLayout()
         self.options_layout = QVBoxLayout()
-        
+
         # Button to add options
         self.add_option_button = QPushButton("Add Option", self)
         self.add_option_button.clicked.connect(self.addOption)
         self.layout.addWidget(self.add_option_button)
-        
+
         # Button to remove the last option
         self.remove_option_button = QPushButton("Remove Last Option", self)
         self.remove_option_button.clicked.connect(self.removeLastOption)
@@ -46,7 +54,7 @@ class BiasedDecisionApp(QWidget):
         for i in range(3):
             self.addOption()
             option_layout = QHBoxLayout()
-            
+
             option_field = QLineEdit(self)
             option_field.setPlaceholderText(f"Option {i+1}")
             self.option_fields.append(option_field)
@@ -118,7 +126,7 @@ class BiasedDecisionApp(QWidget):
             self.decision_label.setText(f"Decision: {decision}")
         else:
             self.decision_label.setText("Please add options to decide.")
-    
+
     def biased_choice(self, options, biases):
         total_bias = sum(biases)
         biased_probs = [bias/total_bias for bias in biases]

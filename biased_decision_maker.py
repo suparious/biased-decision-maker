@@ -1,7 +1,10 @@
 """
 This module implements the Biased Decision Maker application.
 
-The Biased Decision Maker is a GUI application built with PyQt5. It allows users to input a list of options and assign biases to these options. The application can then make a random decision weighted by these biases. Users can also save their list of options and biases to a file and load them later.
+The Biased Decision Maker is a GUI application built with PyQt5. It allows users to input a list 
+of options and assign biases to these options. The application can then make a random decision 
+weighted by these biases. Users can also save their list of options and biases to a file and 
+load them later.
 
 The application is packaged using PyInstaller for distribution across different operating systems.
 """
@@ -20,9 +23,12 @@ from PyQt5.QtWidgets import (  # pylint: disable=no-name-in-module
 from PyQt5.QtCore import Qt, QSettings  # pylint: disable=no-name-in-module
 
 
-# The BiasedDecisionApp class is a widget that allows users to make biased decisions by setting
-# options and biases using fields and sliders.
 class BiasedDecisionApp(QWidget):
+    """
+    The BiasedDecisionApp class is a widget that allows users to make biased decisions by setting
+    options and biases using fields and sliders.
+    """
+
     def __init__(self):
         super().__init__()
         self.option_fields = []
@@ -34,8 +40,8 @@ class BiasedDecisionApp(QWidget):
         """
         The `init_ui` function sets up the user interface for a biased decision maker application,
         including buttons to add and remove options, fields to enter options and set their biases,
-        buttons to save and load configurations, a button to make a decision, and a label to display the
-        decision.
+        buttons to save and load configurations, a button to make a decision, and a label to
+        display the decision.
         """
         # Main layout
         self.layout = QVBoxLayout()
@@ -131,14 +137,15 @@ class BiasedDecisionApp(QWidget):
 
     def biased_choice(self, options, biases):
         """
-        The `biased_choice` function takes a list of options and their corresponding biases, calculates
-        the probabilities based on the biases, and returns a randomly chosen option based on those
-        probabilities.
+        The `biased_choice` function takes a list of options and their corresponding biases, 
+        calculates the probabilities based on the biases, and returns a randomly chosen option 
+        based on those probabilities.
 
-        :param options: The options parameter is a list of choices from which you want to make a biased
-        selection
-        :param biases: The biases parameter is a list of numbers representing the biases for each option
-        in the options list. The biases determine the probability of each option being chosen
+        :param options: The options parameter is a list of choices from which you want to make a 
+        biased selection
+        :param biases: The biases parameter is a list of numbers representing the biases for each 
+        option in the options list. The biases determine the probability of each option being 
+        chosen
         :return: a randomly chosen option from the given options list, with the probability of each
         option being chosen biased according to the biases list.
         """
@@ -148,8 +155,8 @@ class BiasedDecisionApp(QWidget):
 
     def save_configuration(self):
         """
-        The `save_configuration` function saves the configuration settings of a biased decision maker
-        application.
+        The `save_configuration` function saves the configuration settings of a biased decision 
+        maker application.
         """
         config = QSettings("Suparious", "BiasedDecisionMaker")
         config.setValue("option_count", len(self.option_fields))
@@ -160,8 +167,8 @@ class BiasedDecisionApp(QWidget):
 
     def load_configuration(self):
         """
-        The function `load_configuration` loads saved configuration values from a QSettings object and
-        adjusts the current options to match the saved count.
+        The function `load_configuration` loads saved configuration values from a QSettings object 
+        and adjusts the current options to match the saved count.
         """
         config = QSettings("Suparious", "BiasedDecisionMaker")
         saved_option_count = int(config.value("option_count", 0))
@@ -183,6 +190,10 @@ class BiasedDecisionApp(QWidget):
 
 
 def main():
+    """
+    The main function creates and shows an instance of the BiasedDecisionApp class, and then exits 
+    the application.
+    """
     app = QApplication(sys.argv)
     ex = BiasedDecisionApp()
     ex.show()

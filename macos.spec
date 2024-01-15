@@ -34,10 +34,9 @@ exe = EXE(pyz,
           entitlements_file=None  # Add path to entitlements file if needed
           )
 
-# Note: To set an icon, replace 'icon=None' with 'icon='path/to/icon.icns''
-# To set a bundle identifier, replace 'bundle_identifier=None' with your identifier, e.g., 'com.yourcompany.biaseddecisionmaker'
+# TODO: Set an icon, replace 'icon=None' with 'icon='path/to/icon.icns''
 app = BUNDLE(exe,
               name='biased-decision-maker.app',
               icon=None,  # Path to the .icns file
-              bundle_identifier='com.yourcompany.biaseddecisionmaker'  # Example bundle identifier
+              bundle_identifier='net.solidrust.biaseddecisionmaker'
               )

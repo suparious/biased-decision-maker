@@ -87,3 +87,12 @@ pyinstaller --noconfirm --log-level=WARN \
     #--upx-dir=/usr/local/share/ \
     #myscript.spec
 ```
+
+MacOS build script:
+
+```bash
+pyinstaller macos.spec
+plutil -insert Copyright -string "Copyright © SolidRusT Networks 2024" dist/biased-decision-maker.app/Contents/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 0.7.1" "dist/biased-decision-maker.app/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion 42" "dist/biased-decision-maker.app/Contents/Info.plist"
+```

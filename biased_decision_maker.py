@@ -9,16 +9,17 @@ The application is packaged using PyInstaller for distribution across different 
 import sys
 import random
 from PyQt5.QtWidgets import (
-  QApplication,
-  QWidget,
-  QVBoxLayout,
-  QHBoxLayout,
-  QLabel,
-  QLineEdit,
-  QSlider,
-  QPushButton
+    QApplication,
+    QWidget,
+    QVBoxLayout,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QSlider,
+    QPushButton,
 )
 from PyQt5.QtCore import Qt, QSettings
+
 
 class BiasedDecisionApp(QWidget):
     def __init__(self):
@@ -120,7 +121,7 @@ class BiasedDecisionApp(QWidget):
 
     def make_decision(self):
         options = [field.text() for field in self.option_fields if field.text()]
-        biases = [slider.value() for slider in self.bias_sliders[:len(options)]]
+        biases = [slider.value() for slider in self.bias_sliders[: len(options)]]
         if options:
             decision = self.biased_choice(options, biases)
             self.decision_label.setText(f"Decision: {decision}")
@@ -129,7 +130,7 @@ class BiasedDecisionApp(QWidget):
 
     def biased_choice(self, options, biases):
         total_bias = sum(biases)
-        biased_probs = [bias/total_bias for bias in biases]
+        biased_probs = [bias / total_bias for bias in biases]
         return random.choices(options, weights=biased_probs, k=1)[0]
 
     def save_configuration(self):
@@ -169,5 +170,6 @@ def main():
     ex.show()
     sys.exit(app.exec_())
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

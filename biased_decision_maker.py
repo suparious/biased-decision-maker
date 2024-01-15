@@ -10,7 +10,7 @@ The application is packaged using PyInstaller for distribution across different 
 """
 import sys
 import random
-from PyQt5.QtWidgets import (
+from PyQt6.QtWidgets import (
     QApplication,
     QWidget,
     QVBoxLayout,
@@ -20,7 +20,7 @@ from PyQt5.QtWidgets import (
     QSlider,
     QPushButton,
 )
-from PyQt5.QtCore import Qt, QSettings
+from PyQt6.QtCore import Qt, QSettings
 
 
 class BiasedDecisionApp(QWidget):
@@ -68,11 +68,11 @@ class BiasedDecisionApp(QWidget):
             option_field.setPlaceholderText(f"Option {i+1}")
             self.option_fields.append(option_field)
             option_layout.addWidget(option_field)
-            bias_slider = QSlider(self)
+            bias_slider = QSlider(Qt.Orientation.Horizontal)
             bias_slider.setMinimum(1)
             bias_slider.setMaximum(10)
             bias_slider.setValue(5)
-            bias_slider.setOrientation(Qt.Horizontal)
+            bias_slider.setOrientation(Qt.Orientation.Horizontal)
             self.bias_sliders.append(bias_slider)
             option_layout.addWidget(bias_slider)
             self.options_layout.addLayout(option_layout)
@@ -104,7 +104,7 @@ class BiasedDecisionApp(QWidget):
         option_field.setPlaceholderText(f"Option {len(self.option_fields) + 1}")
         self.option_fields.append(option_field)
         option_layout.addWidget(option_field)
-        bias_slider = QSlider(Qt.Horizontal)
+        bias_slider = QSlider(Qt.Orientation.Horizontal)
         bias_slider.setMinimum(1)
         bias_slider.setMaximum(10)
         bias_slider.setValue(5)
@@ -197,7 +197,7 @@ def main():
     app = QApplication(sys.argv)
     ex = BiasedDecisionApp()
     ex.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 
 if __name__ == "__main__":

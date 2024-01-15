@@ -8,17 +8,17 @@ The application is packaged using PyInstaller for distribution across different 
 
 import sys
 import random
-from PyQt5.QtWidgets import (
-    QApplication,
-    QWidget,
-    QVBoxLayout,
-    QHBoxLayout,
-    QLabel,
-    QLineEdit,
-    QSlider,
-    QPushButton,
-) # pylint: disable=no-name-in-module
-from PyQt5.QtCore import Qt, QSettings # pylint: disable=no-name-in-module
+from PyQt5.QtWidgets import (  # pylint: disable=no-name-in-module
+    QApplication,  # pylint: disable=no-name-in-module
+    QWidget,  # pylint: disable=no-name-in-module
+    QVBoxLayout,  # pylint: disable=no-name-in-module
+    QHBoxLayout,  # pylint: disable=no-name-in-module
+    QLabel,  # pylint: disable=no-name-in-module
+    QLineEdit,  # pylint: disable=no-name-in-module
+    QSlider,  # pylint: disable=no-name-in-module
+    QPushButton,  # pylint: disable=no-name-in-module
+)
+from PyQt5.QtCore import Qt, QSettings  # pylint: disable=no-name-in-module
 
 
 class BiasedDecisionApp(QWidget):

@@ -1,4 +1,13 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QSlider, QPushButton
+from PyQt5.QtWidgets import (
+  QApplication,
+  QWidget,
+  QVBoxLayout,
+  QHBoxLayout,
+  QLabel,
+  QLineEdit,
+  QSlider,
+  QPushButton
+)
 from PyQt5.QtCore import Qt, QSettings
 import sys
 import random
@@ -9,7 +18,7 @@ class BiasedDecisionApp(QWidget):
         self.option_fields = []
         self.bias_sliders = []
         self.initUI()
-        self.loadConfiguration()  # Auto-load configuration on startup
+        self.loadConfiguration()
 
     def initUI(self):
         # Main layout

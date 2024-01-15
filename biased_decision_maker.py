@@ -71,7 +71,7 @@ class BiasedDecisionApp(QWidget):
             self.options_layout.addLayout(option_layout)
 
         self.layout.addLayout(self.options_layout)
-        
+
         # Save and load buttons
         self.save_button = QPushButton("Save Configuration", self)
         self.save_button.clicked.connect(self.save_configuration)
@@ -85,7 +85,7 @@ class BiasedDecisionApp(QWidget):
         self.decide_button = QPushButton("Decide", self)
         self.decide_button.clicked.connect(self.make_decision)
         self.layout.addWidget(self.decide_button)
-        
+
         # Label to display the decision
         self.decision_label = QLabel("Decision will be shown here.", self)
         self.layout.addWidget(self.decision_label)

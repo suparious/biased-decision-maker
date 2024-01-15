@@ -20,7 +20,9 @@ from PyQt5.QtWidgets import (  # pylint: disable=no-name-in-module
 )
 from PyQt5.QtCore import Qt, QSettings  # pylint: disable=no-name-in-module
 
-
+"""
+Create the main application window and implement its functionality.
+"""
 class BiasedDecisionApp(QWidget):
     def __init__(self):
         super().__init__()
@@ -28,7 +30,9 @@ class BiasedDecisionApp(QWidget):
         self.bias_sliders = []
         self.init_ui()
         self.load_configuration()
-
+    """
+    Initialize the application's user interface.
+    """
     def init_ui(self):
         # Main layout
         self.layout = QVBoxLayout()
@@ -94,7 +98,9 @@ class BiasedDecisionApp(QWidget):
         # Set the layout
         self.setLayout(self.layout)
         self.setWindowTitle("Biased Decision Maker")
-
+    """
+    Add a new option field and bias slider to the application.
+    """
     def add_option(self):
         option_layout = QHBoxLayout()
 
@@ -111,14 +117,18 @@ class BiasedDecisionApp(QWidget):
         option_layout.addWidget(bias_slider)
 
         self.options_layout.addLayout(option_layout)
-
+    """
+    Remove the last option field and bias slider from the application.
+    """
     def remove_last_option(self):
         if self.option_fields:
             option_field = self.option_fields.pop()
             option_field.deleteLater()
             bias_slider = self.bias_sliders.pop()
             bias_slider.deleteLater()
-
+    """
+    Make a decision based on the current options and biases.
+    """
     def make_decision(self):
         options = [field.text() for field in self.option_fields if field.text()]
         biases = [slider.value() for slider in self.bias_sliders[: len(options)]]
@@ -127,12 +137,16 @@ class BiasedDecisionApp(QWidget):
             self.decision_label.setText(f"Decision: {decision}")
         else:
             self.decision_label.setText("Please add options to decide.")
-
+    """
+    calculate a random choice from a list of options, weighted by a list of biases.
+    """
     def biased_choice(self, options, biases):
         total_bias = sum(biases)
         biased_probs = [bias / total_bias for bias in biases]
         return random.choices(options, weights=biased_probs, k=1)[0]
-
+    """
+    Save the current options and biases to a file.
+    """
     def save_configuration(self):
         config = QSettings("Suparious", "BiasedDecisionMaker")
         config.setValue("option_count", len(self.option_fields))
@@ -140,7 +154,9 @@ class BiasedDecisionApp(QWidget):
             config.setValue(f"option_{i}", option_field.text())
             if i < len(self.bias_sliders):
                 config.setValue(f"bias_{i}", self.bias_sliders[i].value())
-
+    """
+    Load options and biases from a file.
+    """
     def load_configuration(self):
         config = QSettings("Suparious", "BiasedDecisionMaker")
         saved_option_count = int(config.value("option_count", 0))

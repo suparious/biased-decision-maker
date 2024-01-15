@@ -30,6 +30,4 @@ exe = EXE(pyz,
           disable_windowed_traceback=False,
           target_arch=None,
           bootloader_ignore_signals=False,
-          # On Windows, specify the version information
-          # version='versioninfo.txt'  # This line is for Windows builds
           )

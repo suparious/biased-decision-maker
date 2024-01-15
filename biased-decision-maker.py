@@ -6,6 +6,8 @@ The Biased Decision Maker is a GUI application built with PyQt5. It allows users
 The application is packaged using PyInstaller for distribution across different operating systems.
 """
 
+import sys
+import random
 from PyQt5.QtWidgets import (
   QApplication,
   QWidget,
@@ -17,30 +19,28 @@ from PyQt5.QtWidgets import (
   QPushButton
 )
 from PyQt5.QtCore import Qt, QSettings
-import sys
-import random
 
 class BiasedDecisionApp(QWidget):
     def __init__(self):
         super().__init__()
         self.option_fields = []
         self.bias_sliders = []
-        self.initUI()
-        self.loadConfiguration()
+        self.init_ui()
+        self.load_configuration()
 
-    def initUI(self):
+    def init_ui(self):
         # Main layout
         self.layout = QVBoxLayout()
         self.options_layout = QVBoxLayout()
 
         # Button to add options
         self.add_option_button = QPushButton("Add Option", self)
-        self.add_option_button.clicked.connect(self.addOption)
+        self.add_option_button.clicked.connect(self.add_option)
         self.layout.addWidget(self.add_option_button)
 
         # Button to remove the last option
         self.remove_option_button = QPushButton("Remove Last Option", self)
-        self.remove_option_button.clicked.connect(self.removeLastOption)
+        self.remove_option_button.clicked.connect(self.remove_last_option)
         self.layout.addWidget(self.remove_option_button)
 
         # Instruction label
@@ -52,7 +52,7 @@ class BiasedDecisionApp(QWidget):
         self.option_fields = []
         self.bias_sliders = []
         for i in range(3):
-            self.addOption()
+            self.add_option()
             option_layout = QHBoxLayout()
 
             option_field = QLineEdit(self)
@@ -74,16 +74,16 @@ class BiasedDecisionApp(QWidget):
         
         # Save and load buttons
         self.save_button = QPushButton("Save Configuration", self)
-        self.save_button.clicked.connect(self.saveConfiguration)
+        self.save_button.clicked.connect(self.save_configuration)
         self.layout.addWidget(self.save_button)
 
         self.load_button = QPushButton("Load Configuration", self)
-        self.load_button.clicked.connect(self.loadConfiguration)
+        self.load_button.clicked.connect(self.load_configuration)
         self.layout.addWidget(self.load_button)
 
         # Decide button
         self.decide_button = QPushButton("Decide", self)
-        self.decide_button.clicked.connect(self.makeDecision)
+        self.decide_button.clicked.connect(self.make_decision)
         self.layout.addWidget(self.decide_button)
         
         # Label to display the decision
@@ -94,7 +94,7 @@ class BiasedDecisionApp(QWidget):
         self.setLayout(self.layout)
         self.setWindowTitle("Biased Decision Maker")
 
-    def addOption(self):
+    def add_option(self):
         option_layout = QHBoxLayout()
 
         option_field = QLineEdit(self)
@@ -111,14 +111,14 @@ class BiasedDecisionApp(QWidget):
 
         self.options_layout.addLayout(option_layout)
 
-    def removeLastOption(self):
+    def remove_last_option(self):
         if self.option_fields:
             option_field = self.option_fields.pop()
             option_field.deleteLater()
             bias_slider = self.bias_sliders.pop()
             bias_slider.deleteLater()
 
-    def makeDecision(self):
+    def make_decision(self):
         options = [field.text() for field in self.option_fields if field.text()]
         biases = [slider.value() for slider in self.bias_sliders[:len(options)]]
         if options:
@@ -132,7 +132,7 @@ class BiasedDecisionApp(QWidget):
         biased_probs = [bias/total_bias for bias in biases]
         return random.choices(options, weights=biased_probs, k=1)[0]
 
-    def saveConfiguration(self):
+    def save_configuration(self):
         config = QSettings("Suparious", "BiasedDecisionMaker")
         config.setValue("option_count", len(self.option_fields))
         for i, option_field in enumerate(self.option_fields):
@@ -140,7 +140,7 @@ class BiasedDecisionApp(QWidget):
             if i < len(self.bias_sliders):
                 config.setValue(f"bias_{i}", self.bias_sliders[i].value())
 
-    def loadConfiguration(self):
+    def load_configuration(self):
         config = QSettings("Suparious", "BiasedDecisionMaker")
         saved_option_count = int(config.value("option_count", 0))
 
@@ -149,11 +149,11 @@ class BiasedDecisionApp(QWidget):
         if saved_option_count < current_option_count:
             # Remove excess options
             for _ in range(current_option_count - saved_option_count):
-                self.removeLastOption()
+                self.remove_last_option()
         elif saved_option_count > current_option_count:
             # Add missing options
             for _ in range(saved_option_count - current_option_count):
-                self.addOption()
+                self.add_option()
 
         # Now load the values
         for i in range(saved_option_count):

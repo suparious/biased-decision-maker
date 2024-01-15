@@ -32,6 +32,31 @@ Biased Decision Maker is an application that helps users make decisions based on
 
 ## Building and Packaging the Application
 
+### Using spec files
+
+#### Windows
+
+```bash
+pyinstaller windows.spec
+```
+
+#### MacOS
+
+```bash
+pyinstaller macos.spec
+plutil -insert Copyright -string "Copyright © SolidRusT Networks 2024" dist/biased-decision-maker.app/Contents/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 0.7.1" "dist/biased-decision-maker.app/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion 42" "dist/biased-decision-maker.app/Contents/Info.plist"
+```
+
+#### Linux
+
+```bash
+pyinstaller linux.spec
+```
+
+### Using PyInstaller
+
 If you wish to package this application yourself, follow these steps:
 
 1. **Install PyInstaller and PyQt5:**
@@ -50,11 +75,11 @@ If you wish to package this application yourself, follow these steps:
    - Find the packaged executable in the `dist` directory.
    - This file can be distributed and run on compatible systems without needing to install Python or any dependencies.
 
-## Windows build issues
+### Windows build issues
 
 Windows Defender flags the executable as a trojan. This is a false positive. You can try using the --onedir flag instead of --onefile to remedy this. If this does not work, you can try adding the executable to the Windows Defender exclusion list. The best way to resolve this, however, is to build pyinstaller on a Windows machine.
 
-### Building PyInstaller on Windows
+#### Building PyInstaller on Windows
 
 1. Delete and re-create a fresh python `venv` environment.
 2. Do not install any packages in this environment, repeat step 1 if you did.
@@ -67,32 +92,6 @@ Windows Defender flags the executable as a trojan. This is a false positive. You
 9. Navigate to your project folder and run `pyinstaller --onefile --windowed biased-decision-maker.py`.
 10. Re-upload to VirusTotal and see if the false positive is gone.
 
-### References
+## References
 
 - [https://plainenglish.io/blog/pyinstaller-exe-false-positive-trojan-virus-resolved-b33842bd3184](https://plainenglish.io/blog/pyinstaller-exe-false-positive-trojan-virus-resolved-b33842bd3184)
-
-## Notes
-
-Full build script:
-
-```bash
-PLATFORM="windows"
-pyinstaller --noconfirm --log-level=WARN \
-    --onefile --nowindow $PLATFORM.spec
-    #--add-data="README.md:." \
-    #--add-data="images/supariuous_logo.png:img" \
-    #--add-binary="libfoo.so:lib" \
-    #--hidden-import=secret1 \
-    #--hidden-import=secret2 \
-    #--upx-dir=/usr/local/share/ \
-    #myscript.spec
-```
-
-MacOS build script:
-
-```bash
-pyinstaller macos.spec
-plutil -insert Copyright -string "Copyright © SolidRusT Networks 2024" dist/biased-decision-maker.app/Contents/Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 0.7.1" "dist/biased-decision-maker.app/Contents/Info.plist"
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion 42" "dist/biased-decision-maker.app/Contents/Info.plist"
-```

@@ -10,17 +10,17 @@ The application is packaged using PyInstaller for distribution across different 
 """
 import sys
 import random
-from PyQt5.QtWidgets import (  # pylint: disable=no-name-in-module
-    QApplication,  # pylint: disable=no-name-in-module
-    QWidget,  # pylint: disable=no-name-in-module
-    QVBoxLayout,  # pylint: disable=no-name-in-module
-    QHBoxLayout,  # pylint: disable=no-name-in-module
-    QLabel,  # pylint: disable=no-name-in-module
-    QLineEdit,  # pylint: disable=no-name-in-module
-    QSlider,  # pylint: disable=no-name-in-module
-    QPushButton,  # pylint: disable=no-name-in-module
+from PyQt5.QtWidgets import (
+    QApplication,
+    QWidget,
+    QVBoxLayout,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QSlider,
+    QPushButton,
 )
-from PyQt5.QtCore import Qt, QSettings  # pylint: disable=no-name-in-module
+from PyQt5.QtCore import Qt, QSettings
 
 
 class BiasedDecisionApp(QWidget):
@@ -137,14 +137,14 @@ class BiasedDecisionApp(QWidget):
 
     def biased_choice(self, options, biases):
         """
-        The `biased_choice` function takes a list of options and their corresponding biases, 
-        calculates the probabilities based on the biases, and returns a randomly chosen option 
+        The `biased_choice` function takes a list of options and their corresponding biases,
+        calculates the probabilities based on the biases, and returns a randomly chosen option
         based on those probabilities.
 
-        :param options: The options parameter is a list of choices from which you want to make a 
+        :param options: The options parameter is a list of choices from which you want to make a
         biased selection
-        :param biases: The biases parameter is a list of numbers representing the biases for each 
-        option in the options list. The biases determine the probability of each option being 
+        :param biases: The biases parameter is a list of numbers representing the biases for each
+        option in the options list. The biases determine the probability of each option being
         chosen
         :return: a randomly chosen option from the given options list, with the probability of each
         option being chosen biased according to the biases list.
@@ -155,7 +155,7 @@ class BiasedDecisionApp(QWidget):
 
     def save_configuration(self):
         """
-        The `save_configuration` function saves the configuration settings of a biased decision 
+        The `save_configuration` function saves the configuration settings of a biased decision
         maker application.
         """
         config = QSettings("Suparious", "BiasedDecisionMaker")
@@ -167,7 +167,7 @@ class BiasedDecisionApp(QWidget):
 
     def load_configuration(self):
         """
-        The function `load_configuration` loads saved configuration values from a QSettings object 
+        The function `load_configuration` loads saved configuration values from a QSettings object
         and adjusts the current options to match the saved count.
         """
         config = QSettings("Suparious", "BiasedDecisionMaker")
@@ -191,7 +191,7 @@ class BiasedDecisionApp(QWidget):
 
 def main():
     """
-    The main function creates and shows an instance of the BiasedDecisionApp class, and then exits 
+    The main function creates and shows an instance of the BiasedDecisionApp class, and then exits
     the application.
     """
     app = QApplication(sys.argv)

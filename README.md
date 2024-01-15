@@ -1,5 +1,7 @@
 # Biased Decision Maker
 
+![Build Status](https://github.com/suparious/biased-decision-maker/actions/workflows/pylint.yml/badge.svg)
+
 ## Description
 
 Biased Decision Maker is an application that helps users make decisions based on a list of options and user-defined biases.
@@ -60,10 +62,12 @@ pyinstaller linux.spec
 If you wish to package this application yourself, follow these steps:
 
 1. **Install PyInstaller and PyQt5:**
+
    - Ensure you have Python installed on your system.
    - Install PyInstaller using the command: `pip install pyinstaller PyQt5`.
 
 2. **Package the Application:**
+
    - Navigate to the directory containing the `biased-decision-maker.py` script in your terminal or command prompt.
    - Run the command: `pyinstaller --onefile --windowed biased-decision-maker.py`.
    - Windows might flag this app as a trojan. To remedy this, you can try using the --onedir flag instead of --onefile.
@@ -86,7 +90,7 @@ Windows Defender flags the executable as a trojan. This is a false positive. You
 3. Delete **pycache**, **build**, **dist** folders and the **.spec** file from your project folder.
 4. Install a compiler, like the [C++ Compiler from Visual Studios](http://visualstudio.microsoft.com/vs/features/cplusplus/), Community Edition.
 5. Download and extract the latest release of Pyinstaller from [Pyinstaller's GitHub Repository](http://github.com/pyinstaller/pyinstaller/releases).
-6. Using a terminal, navigate to where you have extracted the pyinstaller source code and `cd` to the ***bootloader** folder.
+6. Using a terminal, navigate to where you have extracted the pyinstaller source code and `cd` to the **\*bootloader** folder.
 7. Compile the bootloader with `python.exe ./waf all --target-arch=64bit`. If you want 32bit, use `python.exe ./waf all --target-arch=32bit`.
 8. Using an administrator terminal, install the compiled pyinstaller with `python.exe setup.py install`. You may need `wheel` installed for this to work.
 9. Navigate to your project folder and run `pyinstaller --onefile --windowed biased-decision-maker.py`.

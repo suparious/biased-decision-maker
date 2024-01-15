@@ -17,8 +17,8 @@ from PyQt5.QtWidgets import (
     QLineEdit,
     QSlider,
     QPushButton,
-)
-from PyQt5.QtCore import Qt, QSettings
+) # pylint: disable=no-name-in-module
+from PyQt5.QtCore import Qt, QSettings # pylint: disable=no-name-in-module
 
 
 class BiasedDecisionApp(QWidget):

@@ -39,13 +39,13 @@ Biased Decision Maker is an application that helps users make decisions based on
 #### Windows
 
 ```bash
-pyinstaller windows.spec
+pyinstaller specs/windows.spec
 ```
 
 #### MacOS
 
 ```bash
-pyinstaller macos.spec
+pyinstaller specs/macos.spec
 plutil -insert Copyright -string "Copyright © SolidRusT Networks 2024" dist/biased-decision-maker.app/Contents/Info.plist
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 0.8.0" "dist/biased-decision-maker.app/Contents/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion 0.8.0.69" "dist/biased-decision-maker.app/Contents/Info.plist"
@@ -54,7 +54,7 @@ plutil -insert Copyright -string "Copyright © SolidRusT Networks 2024" dist/bia
 #### Linux
 
 ```bash
-pyinstaller linux.spec
+pyinstaller specs/linux.spec
 ```
 
 ### Using PyInstaller

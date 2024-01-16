@@ -47,8 +47,8 @@ pyinstaller windows.spec
 ```bash
 pyinstaller macos.spec
 plutil -insert Copyright -string "Copyright © SolidRusT Networks 2024" dist/biased-decision-maker.app/Contents/Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 0.7.1" "dist/biased-decision-maker.app/Contents/Info.plist"
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion 42" "dist/biased-decision-maker.app/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 0.8.0" "dist/biased-decision-maker.app/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion 0.8.0.69" "dist/biased-decision-maker.app/Contents/Info.plist"
 ```
 
 #### Linux
